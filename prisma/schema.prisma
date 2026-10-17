@@ -1,0 +1,96 @@
+// Personal Knowledge Vault — full MVP schema (plan F1 §8).
+// Length limits (C4) are enforced by zod validation; SQLite ignores varchar lengths.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  name         String
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  notes Note[]
+  links Link[]
+  tags  Tag[]
+
+  @@map("users")
+}
+
+model Note {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map("user_id")
+  title     String
+  content   String   @default("")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  noteTags NoteTag[]
+
+  @@index([userId, updatedAt])
+  @@index([userId, createdAt])
+  @@map("notes")
+}
+
+model Link {
+  id          Int      @id @default(autoincrement())
+  userId      Int      @map("user_id")
+  title       String
+  url         String
+  description String?
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  linkTags LinkTag[]
+
+  @@index([userId, updatedAt])
+  @@index([userId, createdAt])
+  @@map("links")
+}
+
+model Tag {
+  id             Int    @id @default(autoincrement())
+  userId         Int    @map("user_id")
+  name           String
+  normalizedName String @map("normalized_name")
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  noteTags NoteTag[]
+  linkTags LinkTag[]
+
+  @@unique([userId, normalizedName])
+  @@map("tags")
+}
+
+model NoteTag {
+  noteId Int @map("note_id")
+  tagId  Int @map("tag_id")
+
+  note Note @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  tag  Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([noteId, tagId])
+  @@index([tagId])
+  @@map("note_tags")
+}
+
+model LinkTag {
+  linkId Int @map("link_id")
+  tagId  Int @map("tag_id")
+
+  link Link @relation(fields: [linkId], references: [id], onDelete: Cascade)
+  tag  Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([linkId, tagId])
+  @@index([tagId])
+  @@map("link_tags")
+}
