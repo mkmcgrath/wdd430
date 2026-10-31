@@ -1,0 +1,9 @@
+---
+import { LinkEditorPage } from "../../../components/LinkEditor";
+import AppLayout from "../../../layouts/AppLayout.astro";
+---
+
+<AppLayout title="Save a link">
+  <div class="page-header"><h1>Save a link</h1></div>
+  <LinkEditorPage client:load isNew />
+</AppLayout>

@@ -1,0 +1,17 @@
+---
+import { DashboardView } from "../components/DashboardView";
+import AppLayout from "../layouts/AppLayout.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<AppLayout title="Dashboard">
+  <div class="page-header">
+    <h1>Dashboard</h1>
+    <div class="actions">
+      <a href={`${base}/notes/new/`} class="btn btn-primary">New note</a>
+      <a href={`${base}/links/new/`} class="btn btn-primary">Save a link</a>
+    </div>
+  </div>
+  <DashboardView client:load />
+</AppLayout>

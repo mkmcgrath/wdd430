@@ -1,0 +1,9 @@
+---
+import { SearchResults } from "../components/SearchResults";
+import AppLayout from "../layouts/AppLayout.astro";
+---
+
+<AppLayout title="Search">
+  <div class="page-header"><h1>Search</h1></div>
+  <SearchResults client:load />
+</AppLayout>

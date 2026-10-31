@@ -1,0 +1,159 @@
+Personal Knowledge Vault
+1. Project Description
+
+Personal Knowledge Vault is a web application for organizing notes, links, resources, and other information in one place. Users can create and organize their own knowledge base and quickly search for information they have saved.
+
+The goal is to make it easier to keep useful information organized instead of having it spread across browser bookmarks, notes apps, and documents.
+2. Target Users
+
+The main users are students, developers, and other people who regularly collect information and need a way to organize it.
+3. MVP Core Features
+
+    User registration and login
+
+    User profile
+
+    Create, view, edit, and delete notes
+
+    Create, view, edit, and delete saved links
+
+    Organize notes and links with categories/tags
+
+    Search saved content
+
+    Dashboard showing recently added content
+
+    Responsive desktop and mobile interface
+
+4. Additional Features
+
+    Real-time updates
+
+    Markdown support for notes
+
+    Favorites/bookmarks
+
+    Sharing selected notes with other users
+
+    Multiple languages
+
+    Offline access
+
+5. Main Views / Wireframes
+
+The application will include:
+
+    Login/Register: Forms for creating an account and signing in.
+
+    Dashboard: Recently added notes, links, categories, and quick actions.
+
+    Notes: List of notes with search and filtering.
+
+    Note Editor: Create or edit a note.
+
+    Links: Saved links with titles, URLs, tags, and descriptions.
+
+    Profile/Settings: Account information and preferences.
+
+6. Initial Data Models
+User
+
+    ID
+
+    Name
+
+    Email
+
+    Password
+
+    Created date
+
+Note
+
+    ID
+
+    User ID
+
+    Title
+
+    Content
+
+    Created date
+
+    Updated date
+
+Link
+
+    ID
+
+    User ID
+
+    Title
+
+    URL
+
+    Description
+
+    Created date
+
+Tag
+
+    ID
+
+    Name
+
+NoteTag / LinkTag
+
+    Note or Link ID
+
+    Tag ID
+
+7. API Endpoints
+Authentication
+
+    POST /api/auth/register
+
+    POST /api/auth/login
+
+    GET /api/auth/me
+
+Notes
+
+    GET /api/notes
+
+    GET /api/notes/:id
+
+    POST /api/notes
+
+    PUT /api/notes/:id
+
+    DELETE /api/notes/:id
+
+Links
+
+    GET /api/links
+
+    GET /api/links/:id
+
+    POST /api/links
+
+    PUT /api/links/:id
+
+    DELETE /api/links/:id
+
+Tags
+
+    GET /api/tags
+
+    POST /api/tags
+
+    PUT /api/tags/:id
+
+    DELETE /api/tags/:id
+
+Advanced Feature
+
+The project will implement real-time updates so changes to shared content can appear without requiring users to refresh the page.
+Project Goal
+
+The MVP should provide a simple way for users to save and organize information while demonstrating authentication, multiple data models, CRUD operations, responsive UI, and API communication.

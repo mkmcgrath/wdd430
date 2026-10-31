@@ -1,0 +1,9 @@
+---
+import { TagManager } from "../components/TagManager";
+import AppLayout from "../layouts/AppLayout.astro";
+---
+
+<AppLayout title="Tags">
+  <div class="page-header"><h1>Tags</h1></div>
+  <TagManager client:load />
+</AppLayout>

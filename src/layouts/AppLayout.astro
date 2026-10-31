@@ -1,0 +1,19 @@
+---
+import { AppHeader } from "../components/AppHeader";
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+const current = Astro.url.pathname.replace(/^\/vault/, "");
+---
+
+<BaseLayout title={title}>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <AppHeader client:load current={current} />
+  <main id="main" class="main">
+    <slot />
+  </main>
+</BaseLayout>

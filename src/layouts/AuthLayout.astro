@@ -1,0 +1,22 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+const home = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+---
+
+<BaseLayout title={title}>
+  <main class="auth-shell">
+    <div class="auth-card">
+      <a href={home} class="auth-brand">Knowledge Vault</a>
+      <div class="card stack">
+        <h1>{title}</h1>
+        <slot />
+      </div>
+    </div>
+  </main>
+</BaseLayout>

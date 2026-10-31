@@ -1,0 +1,9 @@
+---
+import { NoteEditorPage } from "../../../components/NoteEditor";
+import AppLayout from "../../../layouts/AppLayout.astro";
+---
+
+<AppLayout title="Note">
+  <div class="page-header"><h1>Note</h1></div>
+  <NoteEditorPage client:load />
+</AppLayout>

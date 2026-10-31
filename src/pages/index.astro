@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<BaseLayout title="Welcome">
+  <main class="landing">
+    <h1>Keep what you find in one place</h1>
+    <p>
+      Knowledge Vault is a private home for your notes and links, so useful things stop getting lost across
+      bookmarks, apps, and documents.
+    </p>
+    <ul>
+      <li>Write notes and save links</li>
+      <li>Organize everything with your own tags</li>
+      <li>Search titles, content, and URLs</li>
+    </ul>
+    <div class="actions">
+      <a href={`${base}/register/`} class="btn btn-primary">Create an account</a>
+      <a href={`${base}/login/`} class="btn">Sign in</a>
+    </div>
+  </main>
+</BaseLayout>
+
+<script>
+  import { api, href } from "../lib/api";
+
+  api.session().then(
+    ({ user }) => {
+      if (user) location.replace(href("/dashboard/"));
+    },
+    () => {},
+  );
+</script>

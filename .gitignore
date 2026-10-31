@@ -1,0 +1,19 @@
+# dependencies
+/node_modules
+
+# build output
+/dist
+/dist-server
+/.astro
+
+# sqlite databases
+/data
+
+# env files (keep the example)
+.env*
+!.env.example
+
+# misc
+.DS_Store
+*.tsbuildinfo
+npm-debug.log*

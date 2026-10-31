@@ -1,0 +1,9 @@
+---
+import { ProfilePage } from "../components/ProfileForms";
+import AppLayout from "../layouts/AppLayout.astro";
+---
+
+<AppLayout title="Profile">
+  <div class="page-header"><h1>Profile</h1></div>
+  <ProfilePage client:load />
+</AppLayout>
